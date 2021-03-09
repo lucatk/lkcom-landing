@@ -18,6 +18,7 @@ body {
   -ms-font-feature-settings: "kern", "liga", "clig", "calt";
   -webkit-font-feature-settings: "kern", "liga", "clig", "calt";
   font-feature-settings: "kern", "liga", "clig", "calt";
+  background-color: #f8f8f8;
 }
 article,
 aside,
@@ -53,10 +54,12 @@ template {
 a {
   background-color: transparent;
   -webkit-text-decoration-skip: objects;
+  text-decoration: none;
 }
 a:active,
 a:hover {
   outline-width: 0;
+  color: #BB7E5D;
 }
 abbr[title] {
   border-bottom: 1px dotted hsla(0, 0%, 0%, 0.5);
@@ -593,5 +596,23 @@ pre tt:after {
 @media only screen and (max-width: 480px) {
   html {
     font-size: 100%;
+  }
+}
+
+a, p, h1, h2, h3, h4, h5, h6, span {
+  color: #3a3a3a;
+}
+footer {
+  font-size: 14px;
+}
+footer, footer a {
+  color: #888;
+}
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #222;
+  }
+  a, p, h1, h2, h3, h4, h5, h6, span, main {
+    color: #ccc;
   }
 }

@@ -1,55 +1,50 @@
-/**
- * Layout component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.com/docs/use-static-query/
- */
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
-import React from "react"
-import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
+import { Link } from 'gatsby';
 
-import Header from "./header"
-import "./layout.css"
+import './layout.css';
 
-const Layout = ({ children }) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `)
+const LayoutDiv = styled.div`
+  width: 70%;
+  min-height: 100vh;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
 
-  return (
-    <>
-      <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
-        }}
-      >
-        <main>{children}</main>
-        <footer
-          style={{
-            marginTop: `2rem`,
-          }}
-        >
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.com">Gatsby</a>
-        </footer>
-      </div>
-    </>
-  )
-}
+const MainContent = styled.main`
+  margin: 20px 0;
+`;
+
+const Footer = styled.footer`
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+`;
+
+const Layout = ({ children }) => (
+  <LayoutDiv>
+    <MainContent>{children}</MainContent>
+    <Footer>
+      built with
+      {' '}
+      <a href="https://www.gatsbyjs.com">Gatsby</a>
+      {' '}
+      |
+      {' '}
+      <Link to="/imprint">imprint</Link>
+    </Footer>
+  </LayoutDiv>
+);
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
-}
+};
 
-export default Layout
+export default Layout;

@@ -1,0 +1,22 @@
+{
+  "github": {
+    "icon": "GitHub",
+    "altText": "GitHub",
+    "href": "https://github.com/lucatk"
+  },
+  "twitter": {
+    "icon": "Twitter",
+    "altText": "Twitter",
+    "href": "https://twitter.com/lucakillmaier"
+  },
+  "linkedin": {
+    "icon": "Linkedin",
+    "altText": "Linkedin",
+    "href": "https://linkedin.com/in/lucakillmaier"
+  },
+  "mail": {
+    "icon": "AtSign",
+    "altText": "Send me a Mail",
+    "href": "mailto:mail@lucakillmaier.com"
+  }
+}
