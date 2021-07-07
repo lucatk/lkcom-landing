@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import * as Icons from 'react-feather';
 
 import Layout from '../components/layout';
-import PersonalPhoto from '../components/PersonalPhoto';
+import PersonalPhotoObject from '../components/PersonalPhoto';
 import SEO from '../components/seo';
 
 import socialLinks from '../../content/social-links.json';
@@ -45,6 +45,10 @@ const PersonalPhotoBorder = styled.div`
   @media (prefers-color-scheme: dark) {
     border-color: #cfcfcf;
   }
+`;
+const PersonalPhoto = styled(PersonalPhotoObject)`
+  opacity: ${({ hide }) => hide ? 0 : 1};
+  transition: opacity 100ms;
 `;
 
 Name = styled.h1`
@@ -118,28 +122,34 @@ const SocialAltText = styled.p`
   }
 `;
 
-const IndexPage = () => (
-  <Layout>
-    <SEO />
-    <HoverContainer>
-      <PersonalPhotoContainer>
-        <PersonalPhotoBorder>
-          <PersonalPhoto />
-        </PersonalPhotoBorder>
-      </PersonalPhotoContainer>
-      <Name>luca killmaier</Name>
-      <SocialMenu>
-        {Object.entries(socialLinks).map(([key, link]) => (
-          <SocialLink key={key}>
-            <a href={link.href} target={!link.href.startsWith('mailto:') && '_blank'}>
-              <SocialIcon Icon={Icons[link.icon]} alt={link.altText} />
-            </a>
-            <SocialAltText>{link.altText}</SocialAltText>
-          </SocialLink>
-        ))}
-      </SocialMenu>
-    </HoverContainer>
-  </Layout>
-);
+const IndexPage = () => {
+  const [hidePhoto, setHidePhoto] = useState(true);
+  useEffect(() => {
+    setHidePhoto(false);
+  }, []);
+  return (
+    <Layout>
+      <SEO />
+      <HoverContainer>
+        <PersonalPhotoContainer>
+          <PersonalPhotoBorder>
+            <PersonalPhoto hide={hidePhoto} />
+          </PersonalPhotoBorder>
+        </PersonalPhotoContainer>
+        <Name>luca killmaier</Name>
+        <SocialMenu>
+          {Object.entries(socialLinks).map(([key, link]) => (
+            <SocialLink key={key}>
+              <a href={link.href} target={!link.href.startsWith('mailto:') && '_blank'}>
+                <SocialIcon Icon={Icons[link.icon]} alt={link.altText} />
+              </a>
+              <SocialAltText>{link.altText}</SocialAltText>
+            </SocialLink>
+          ))}
+        </SocialMenu>
+      </HoverContainer>
+    </Layout>
+  );
+};
 
 export default IndexPage;
