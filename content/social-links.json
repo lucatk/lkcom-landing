@@ -1,4 +1,19 @@
 {
+  "mail": {
+    "icon": "AtSign",
+    "altText": "Send me a Mail",
+    "href": "mailto:mail@lucakillmaier.com"
+  },
+  "cv": {
+    "icon": "FileText",
+    "altText": "View my CV",
+    "href": "cv.pdf"
+  },
+  "linkedin": {
+    "icon": "Linkedin",
+    "altText": "Linkedin",
+    "href": "https://linkedin.com/in/lucakillmaier"
+  },
   "github": {
     "icon": "GitHub",
     "altText": "GitHub",
@@ -8,15 +23,5 @@
     "icon": "Twitter",
     "altText": "Twitter",
     "href": "https://twitter.com/lucakillmaier"
-  },
-  "linkedin": {
-    "icon": "Linkedin",
-    "altText": "Linkedin",
-    "href": "https://linkedin.com/in/lucakillmaier"
-  },
-  "mail": {
-    "icon": "AtSign",
-    "altText": "Send me a Mail",
-    "href": "mailto:mail@lucakillmaier.com"
   }
 }

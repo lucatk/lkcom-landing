@@ -21,13 +21,14 @@ const HoverContainer = styled.div`
 const PersonalPhotoContainer = styled.div`
   width: 100%;
   transform-origin: center left;
-  transition: transform 250ms, opacity 150ms;
+  transition: transform 250ms, filter 250ms, opacity 150ms;
 
   &:hover {
     transform: scale(1.2);
   }
   ${HoverContainer}:hover &:not(:hover) {
     opacity: 0.4;
+    filter: grayscale(1);
   }
   ${Name}:hover ~ & {
     transform: translateY(-5px);
@@ -84,7 +85,8 @@ const SocialMenu = styled.div`
   }
 `;
 
-const SocialLink = styled.a`
+const SocialLink = styled.div`
+  display: inline-block;
   margin: 0 12px;
   &:first-child {
     margin-left: 0;
@@ -96,12 +98,23 @@ const SocialLink = styled.a`
 
 const _SocialIcon = ({ Icon, ...attrs }) => <Icon size={32} color="#3c3c3c" {...attrs} />;
 const SocialIcon = styled(_SocialIcon)`
-  &:hover {
+  ${SocialLink} a:hover & {
     stroke: #BB7E5D;
     cursor: pointer;
   }
   @media (prefers-color-scheme: dark) {
     stroke: #cfcfcf;
+  }
+`;
+
+const SocialAltText = styled.p`
+  position: absolute;
+  transition: opacity 100ms;
+  opacity: 0;
+  cursor: default;
+  margin: 0;
+  ${SocialLink} a:hover ~ & {
+    opacity: 1;
   }
 `;
 
@@ -117,8 +130,11 @@ const IndexPage = () => (
       <Name>luca killmaier</Name>
       <SocialMenu>
         {Object.entries(socialLinks).map(([key, link]) => (
-          <SocialLink key={key} href={link.href} target="_blank">
-            <SocialIcon Icon={Icons[link.icon]} alt={link.altText} />
+          <SocialLink key={key}>
+            <a href={link.href} target={!link.href.startsWith('mailto:') && '_blank'}>
+              <SocialIcon Icon={Icons[link.icon]} alt={link.altText} />
+            </a>
+            <SocialAltText>{link.altText}</SocialAltText>
           </SocialLink>
         ))}
       </SocialMenu>
